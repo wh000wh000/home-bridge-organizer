@@ -2,9 +2,45 @@
 
 中文名：**家桥整理器**
 
+> Too many bridged accessories in Apple Home. Too little patience to drag them into rooms one by one.
+>
+> **Home Bridge Organizer** turns that tiny domestic tragedy into a preview-and-apply workflow.
+
+> Apple 家庭里桥接进来一堆设备，全都挤在默认房间里？  
+> **家桥整理器** 帮你把“逐个点开、逐个分房间”的苦活，变成“导入映射、预览、应用”。
+
+> Apple Home にブリッジ経由のアクセサリが山ほど入って、部屋分けが手作業になっていませんか？  
+> **Home Bridge Organizer** は、ローカルのルームマップから一括整理できる小さな Mac ツールです。
+
 Home Bridge Organizer is a small Mac Catalyst utility that moves bridged Apple Home accessories into rooms from a local, reviewable room map.
 
 It is useful when Home Assistant, Homebridge, HOOBS, Node-RED, or another bridge exposes many accessories to Apple Home and Apple Home places them all in the default room.
+
+## The Lazy Origin Story
+
+I wanted Siri to understand my smart home. Reasonable.  
+Then Apple Home asked me to manually assign room after room after room. Less reasonable.
+
+So this app exists for a very specific kind of laziness: the productive kind. If another system already knows where your devices live, why should your thumb repeat that knowledge 47 times?
+
+## Use Cases
+
+- You exposed a large Home Assistant HomeKit Bridge to Apple Home.
+- You rebuilt or re-paired a bridge and Apple Home forgot every room.
+- Homebridge/HOOBS/Node-RED created dozens of bridged accessories in one default room.
+- You maintain your real room truth somewhere else and want Apple Home to catch up.
+- You add new bridged accessories regularly and want incremental cleanup instead of a weekend chore.
+
+## How It Works
+
+1. Export or write a local room map: accessory name -> target Apple Home room.
+2. Open Home Bridge Organizer on Mac.
+3. Import the JSON room map.
+4. Pick the Apple Home bridge.
+5. Review current room -> target room.
+6. Apply only the selected changes.
+
+No cloud. No mystery sync. No surprise light toggles. Just room metadata, locally applied.
 
 ## What It Does
 
@@ -109,9 +145,13 @@ See `room_overrides.example.json`.
 
 ## Release
 
-Current planned release: `v0.1.0`.
+Current release: `v0.1.0`.
 
 The first public release is source-first. Signed binaries are not distributed yet because HomeKit apps require developer-team signing and user-granted HomeKit access.
+
+## Not Affiliated
+
+Home Bridge Organizer is not affiliated with Apple, Home Assistant, Homebridge, HOOBS, or Node-RED. It uses Apple's public HomeKit APIs.
 
 ## License
 
