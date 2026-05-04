@@ -169,13 +169,13 @@ final class RoomSyncStore: NSObject, ObservableObject, HMHomeManagerDelegate {
         }
 
         let candidates = home.accessories
-            .filter { !($0.uniqueIdentifiersForBridgedAccessories ?? []).isEmpty || !$0.bridgedAccessories.isEmpty }
+            .filter { !($0.uniqueIdentifiersForBridgedAccessories ?? []).isEmpty }
             .map { accessory in
                 BridgeCandidate(
                     id: accessory.uniqueIdentifier,
                     name: accessory.name,
                     accessory: accessory,
-                    bridgedCount: max(accessory.bridgedAccessories.count, accessory.uniqueIdentifiersForBridgedAccessories?.count ?? 0)
+                    bridgedCount: accessory.uniqueIdentifiersForBridgedAccessories?.count ?? 0
                 )
             }
             .sorted { lhs, rhs in
@@ -244,13 +244,9 @@ final class RoomSyncStore: NSObject, ObservableObject, HMHomeManagerDelegate {
     }
 
     private func bridgedAccessories(for bridge: HMAccessory) -> [HMAccessory] {
-        if !bridge.bridgedAccessories.isEmpty {
-            return bridge.bridgedAccessories
-        }
-
         guard let home = selectedHome else { return [] }
         let bridgedIDs = Set(bridge.uniqueIdentifiersForBridgedAccessories ?? [])
-        return home.accessories.filter { bridgedIDs.contains($0.uniqueIdentifier) || $0.isBridged }
+        return home.accessories.filter { bridgedIDs.contains($0.uniqueIdentifier) }
     }
 
     private func matchEntry(for accessoryName: String) -> (entry: RoomMapEntry?, kind: String) {
