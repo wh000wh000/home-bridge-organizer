@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-04T00:00:00Z",
+  "source": {
+    "generator": "manual-example",
+    "bridge_name": "Example Bridge",
+    "bridge_port": 21063
+  },
+  "entries": [
+    {
+      "accessory_name": "Kitchen Light",
+      "room": "Kitchen",
+      "aliases": ["Kitchen Ceiling"],
+      "confidence": "example"
+    },
+    {
+      "accessory_name": "Living Room Curtain",
+      "room": "Living Room",
+      "aliases": [],
+      "confidence": "example"
+    },
+    {
+      "accessory_name": "Bedroom AC",
+      "room": "Bedroom",
+      "aliases": ["Bedroom Air Conditioner"],
+      "confidence": "example"
+    }
+  ]
+}

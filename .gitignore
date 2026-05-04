@@ -1,0 +1,11 @@
+.DS_Store
+xcuserdata/
+DerivedData/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+room_map.json
+homekit_room_map.json
+room_overrides.json
+*.log
+build/
+dist/

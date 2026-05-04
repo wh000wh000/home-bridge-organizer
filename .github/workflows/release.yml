@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify build
+        run: |
+          xcodebuild \
+            -project HomeBridgeOrganizer/HomeBridgeOrganizer.xcodeproj \
+            -scheme HomeBridgeOrganizer \
+            -configuration Release \
+            -destination 'platform=macOS,variant=Mac Catalyst' \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+      - name: Create source archive
+        run: |
+          mkdir -p dist
+          git archive --format zip --output "dist/home-bridge-organizer-${GITHUB_REF_NAME}.zip" HEAD
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: RELEASE.md
+          files: dist/*.zip
