@@ -4,6 +4,12 @@
 
 Home Bridge Organizer / 家桥整理器 starts as a source-first release for advanced Apple Home bridge users.
 
+Full product pages:
+
+- [English](README.md)
+- [简体中文](docs/README.zh-CN.md)
+- [日本語](docs/README.ja.md)
+
 ## Product Intro
 
 ### 中文

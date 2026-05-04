@@ -1,35 +1,49 @@
 # Home Bridge Organizer
 
-中文名：**家桥整理器**
+[English](README.md) | [简体中文](docs/README.zh-CN.md) | [日本語](docs/README.ja.md)
 
-> Too many bridged accessories in Apple Home. Too little patience to drag them into rooms one by one.
->
-> **Home Bridge Organizer** turns that tiny domestic tragedy into a preview-and-apply workflow.
+[![CI](https://github.com/wh000wh000/home-bridge-organizer/actions/workflows/ci.yml/badge.svg)](https://github.com/wh000wh000/home-bridge-organizer/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/wh000wh000/home-bridge-organizer)](https://github.com/wh000wh000/home-bridge-organizer/releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Mac%20Catalyst-blue.svg)](README.md)
 
-> Apple 家庭里桥接进来一堆设备，全都挤在默认房间里？  
-> **家桥整理器** 帮你把“逐个点开、逐个分房间”的苦活，变成“导入映射、预览、应用”。
+Chinese name: **家桥整理器**
 
-> Apple Home にブリッジ経由のアクセサリが山ほど入って、部屋分けが手作業になっていませんか？  
-> **Home Bridge Organizer** は、ローカルのルームマップから一括整理できる小さな Mac ツールです。
+Too many bridged accessories in Apple Home. Too little patience to drag them into rooms one by one.
 
-Home Bridge Organizer is a small Mac Catalyst utility that moves bridged Apple Home accessories into rooms from a local, reviewable room map.
-
-It is useful when Home Assistant, Homebridge, HOOBS, Node-RED, or another bridge exposes many accessories to Apple Home and Apple Home places them all in the default room.
+**Home Bridge Organizer** turns that tiny domestic tragedy into a local, reviewable, preview-and-apply workflow.
 
 ## The Lazy Origin Story
 
-I wanted Siri to understand my smart home. Reasonable.  
-Then Apple Home asked me to manually assign room after room after room. Less reasonable.
+I wanted Siri to understand my smart home. Reasonable.
 
-So this app exists for a very specific kind of laziness: the productive kind. If another system already knows where your devices live, why should your thumb repeat that knowledge 47 times?
+Then Apple Home said: "Great. Please sort these 47 bridged accessories into rooms by hand."
 
-## Use Cases
+Less reasonable.
 
-- You exposed a large Home Assistant HomeKit Bridge to Apple Home.
-- You rebuilt or re-paired a bridge and Apple Home forgot every room.
-- Homebridge/HOOBS/Node-RED created dozens of bridged accessories in one default room.
-- You maintain your real room truth somewhere else and want Apple Home to catch up.
-- You add new bridged accessories regularly and want incremental cleanup instead of a weekend chore.
+So this app exists for a very specific kind of laziness: the productive kind. If Home Assistant, Homebridge, HOOBS, Node-RED, or another bridge already knows where your devices live, Apple Home should not make your thumb repeat that knowledge accessory by accessory.
+
+## What Problem Does It Solve?
+
+Apple Home stores room assignments on the Apple Home side. A HomeKit bridge can expose accessories, names, services, and states, but it does not reliably push "this accessory belongs in the Kitchen" into Apple Home.
+
+That means bridged accessories often land in a default room, especially when you:
+
+- pair a large Home Assistant HomeKit Bridge,
+- rebuild or re-pair a HomeKit bridge,
+- migrate a Homebridge or HOOBS setup,
+- expose many Node-RED or custom bridge accessories,
+- add lots of smart-home devices over time.
+
+Home Bridge Organizer fixes the boring part: it reads a local room map, shows what would move, and applies only the changes you select.
+
+## Best For
+
+- Home Assistant users exposing many entities through HomeKit Bridge.
+- Homebridge / HOOBS users with dozens of bridged accessories.
+- Apple Home users who rebuilt a bridge and lost room assignments.
+- Smart-home tinkerers who maintain room metadata elsewhere.
+- Anyone who wants Siri to understand rooms without a tiny admin marathon.
 
 ## How It Works
 
@@ -42,7 +56,18 @@ So this app exists for a very specific kind of laziness: the productive kind. If
 
 No cloud. No mystery sync. No surprise light toggles. Just room metadata, locally applied.
 
-## What It Does
+## Works With
+
+- Apple Home / HomeKit
+- Home Assistant HomeKit Bridge
+- Homebridge
+- HOOBS
+- Node-RED HomeKit bridges
+- Manual JSON room maps
+
+The built-in exporter currently targets Home Assistant YAML HomeKit Bridge setups. Other bridges can use the manual JSON format.
+
+## Features
 
 - Reads Apple Home homes, rooms, bridges, and bridged accessories through Apple's public HomeKit API.
 - Imports a local JSON room map.
@@ -50,6 +75,7 @@ No cloud. No mystery sync. No surprise light toggles. Just room metadata, locall
 - Shows a preview: current room -> target room.
 - Applies only selected changes.
 - Creates missing Apple Home rooms when needed.
+- Keeps everything local.
 
 It does not control device power/state, does not upload data, and does not require a server.
 
@@ -135,6 +161,18 @@ ROOM_OVERRIDES=room_overrides.json ./scripts/export_from_ha_ssh.sh room_map.json
 ```
 
 See `room_overrides.example.json`.
+
+## Search Keywords
+
+Apple Home room sync, HomeKit room organizer, HomeKit Bridge room assignment, Home Assistant HomeKit Bridge rooms, Homebridge room sync, HOOBS Apple Home rooms, Node-RED HomeKit rooms, bridged accessories, Siri room control, smart home room mapping.
+
+## Roadmap
+
+- CSV import.
+- Rollback UI.
+- Persisted HomeKit accessory UUID mapping.
+- Better duplicate-name handling.
+- Signed release builds if distribution becomes practical.
 
 ## Safety
 
